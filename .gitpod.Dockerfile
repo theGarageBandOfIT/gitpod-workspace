@@ -132,3 +132,6 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
 RUN sudo apt-get update -y
 RUN sudo apt-get install -y jq tmux vim
 COPY --from=yq /usr/bin/yq /usr/bin/yq
+
+# ----- prerequisites for container.training labs
+RUN pip install git+https://github.com/lilydjwg/pssh
