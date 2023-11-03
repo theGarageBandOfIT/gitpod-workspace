@@ -8,6 +8,22 @@ RUN apt-get update -y
 RUN apt-get install -y wget unzip
 
 # -----------------------------------------------------------------------------
+# Digital Ocean
+# -----------------------------------------------------------------------------
+FROM base as do
+LABEL maintainer="Ludovic Piot <ludovic.piot@thegaragebandofit.com>"
+
+# Digital Ocean CLI vars
+ARG DOCTL_VERSION=1.100.0
+
+WORKDIR /usr/bin
+RUN wget https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
+    tar -xzf ./doctl-${DOCTL_VERSION}-linux-amd64.tar.gz && \
+    rm -f ./doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
+
+# TODO: Add Digital Ocean CLI autocompletion in BASH
+
+# -----------------------------------------------------------------------------
 # Terraform
 # -----------------------------------------------------------------------------
 FROM base as tf
@@ -63,6 +79,8 @@ FROM gitpod/workspace-full
 LABEL maintainer="Ludovic Piot <ludovic.piot@thegaragebandofit.com>"
 
 WORKDIR /home/gitpod
+COPY --from=do /usr/bin/doctl /usr/bin/doctl
+
 COPY --from=tf /usr/bin/terraform /usr/bin/terraform
 COPY --from=tf /root/.bashrc ./.bashrc_tf
 
