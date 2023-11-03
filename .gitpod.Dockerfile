@@ -17,7 +17,7 @@ LABEL maintainer="Ludovic Piot <ludovic.piot@thegaragebandofit.com>"
 ARG DOCTL_VERSION=1.100.0
 
 WORKDIR /usr/bin
-RUN wget https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
+RUN wget https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz && \
     tar -xzf ./doctl-${DOCTL_VERSION}-linux-amd64.tar.gz && \
     rm -f ./doctl-${DOCTL_VERSION}-linux-amd64.tar.gz
 
