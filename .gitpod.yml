@@ -2,7 +2,7 @@ image:
   # This image is built upon the following Dockerfile: .gitpod.Dockerfile
   # thegaragebandofit/gitpod-workspace_one-kubernetes:gcloud-0.0.3
   # You can dynamically build the image when you create a new GitPod workspace with the following lines
-  gitpod/workspace-full
+  # gitpod/workspace-full
   file: .gitpod.Dockerfile
 tasks:
   - name: kernel dev environment
