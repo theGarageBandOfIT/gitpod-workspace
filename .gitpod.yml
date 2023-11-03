@@ -14,10 +14,19 @@ tasks:
   - name: populate the code base
     init: |
       echo "Populate the code base"
-      git clone https://github.com/musk8teers/container.training.git
-      git clone https://github.com/musk8teers/spring-music.git
       # kubectl completion bash > /workspace/kubectl_completion_for_bash.sh
       # echo "source /workspace/kubectl_completion_for_bash.sh" >> ~/.bashrc
+    command: |
+      echo "TODO: start app"
+  - name: pre-requisite for container.training
+    init: |
+      echo "pre-requisite for container.training"
+      git clone https://github.com/musk8teers/container.training.git
+      git clone https://github.com/musk8teers/spring-music.git
+      echo "make /dev/stderr writable"
+      sudo chmod go+rw /dev/pts/1
+      echo "install pssh"
+      pip install git+https://github.com/lilydjwg/pssh
     command: |
       echo "TODO: start app"
 vscode:
