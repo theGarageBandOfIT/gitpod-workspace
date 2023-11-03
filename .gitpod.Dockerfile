@@ -79,6 +79,10 @@ FROM gitpod/workspace-full
 LABEL maintainer="Ludovic Piot <ludovic.piot@thegaragebandofit.com>"
 
 WORKDIR /home/gitpod
+
+# Copy of stand-alone files
+COPY ./ssh-config /home/gitpod/.ssh/config
+
 COPY --from=do /usr/bin/doctl /usr/bin/doctl
 
 COPY --from=tf /usr/bin/terraform /usr/bin/terraform

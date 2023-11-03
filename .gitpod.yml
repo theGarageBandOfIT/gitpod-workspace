@@ -11,6 +11,12 @@ tasks:
       sudo apt update -y
     command: |
       echo "Nothing here."
+  - name: filesystem reconfiguration
+    init: |
+      mkdir -p /home/gitpod/.ssh
+      cp -pr /workspace/gitpod-workspace/ssh-config /home/gitpod/.ssh/config
+    command: |
+      echo "Nothing here."
   - name: populate the code base
     init: |
       echo "Populate the code base"

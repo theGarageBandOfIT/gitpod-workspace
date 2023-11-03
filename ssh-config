@@ -1,0 +1,26 @@
+Host source.developers.google.com
+  Hostname source.developers.google.com
+  Port 2022
+  User ludovic.piot@bien-chez-vous.fr
+  IdentityFile /workspace/.secrets/ssh/gitpod_gcpsourcerepo_ed25519
+  Compression yes
+
+Host github.com
+  Hostname github.com
+  User git
+  IdentityFile /workspace/.secrets/ssh/gitpod_github_ed25519
+  Compression yes
+
+Host gitlab.com
+  Hostname gitlab.com
+  User git
+  IdentityFile /workspace/.secrets/ssh/gitpod_gitlab_ed25519
+  Compression yes
+
+# ----- digitalprocessing
+
+Host https://gitlab.digitalprocessing.dev
+  Hostname gitlab.digitalprocessing.dev
+  User git
+  IdentityFile /workspace/.secrets/ssh/gitpod_digitalprocessing-gitlab_ed25519
+  Compression yes
