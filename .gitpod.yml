@@ -5,34 +5,20 @@ image:
   # gitpod/workspace-full
   file: .gitpod.Dockerfile
 tasks:
-  - name: kernel dev environment
-    init: |
-      echo "update the OS"
-      sudo apt update -y
-    command: |
-      echo "Nothing here."
   - name: filesystem reconfiguration
     init: |
       mkdir -p /home/gitpod/.ssh
       cp -pr /workspace/gitpod-workspace/ssh-config /home/gitpod/.ssh/config
     command: |
       echo "Nothing here."
-  - name: populate the code base
-    init: |
-      echo "Populate the code base"
-      # kubectl completion bash > /workspace/kubectl_completion_for_bash.sh
-      # echo "source /workspace/kubectl_completion_for_bash.sh" >> ~/.bashrc
-    command: |
-      echo "TODO: start app"
   - name: pre-requisite for container.training
     init: |
       echo "pre-requisite for container.training"
+      echo "clone the git repositories"
       git clone https://github.com/musk8teers/container.training.git
       git clone https://github.com/musk8teers/spring-music.git
       echo "make /dev/stderr writable"
       sudo chmod go+rw /dev/pts/1
-      echo "install pssh"
-      pip install git+https://github.com/lilydjwg/pssh
     command: |
       echo "TODO: start app"
 vscode:
