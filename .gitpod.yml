@@ -19,6 +19,8 @@ tasks:
       git clone https://github.com/musk8teers/spring-music.git
       echo "make /dev/stderr writable"
       sudo chmod go+rw /dev/pts/1
+      echo "Activate SSH agent"
+      eval $(ssh-agent) ; ssh-add && echo "SSH_AUTH_SOCK=${SSH_AUTH_SOCK}"
     command: |
       echo "TODO: start app"
 vscode:
