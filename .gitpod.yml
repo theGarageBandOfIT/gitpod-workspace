@@ -1,9 +1,8 @@
 image:
   # This image is built upon the following Dockerfile: .gitpod.Dockerfile
-  ghcr.io/lpiot/gitpod-workspace
+  ghcr.io/lpiot/gitpod-workspace:main
   # You can dynamically build the image when you create a new GitPod workspace with the following lines
   # gitpod/workspace-full
-  # file: .gitpod.Dockerfile
 tasks:
   - name: filesystem reconfiguration
     init: |
