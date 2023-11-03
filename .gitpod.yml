@@ -1,0 +1,28 @@
+image:
+  # This image is built upon the following Dockerfile: .gitpod.Dockerfile
+  # thegaragebandofit/gitpod-workspace_one-kubernetes:gcloud-0.0.3
+  # You can dynamically build the image when you create a new GitPod workspace with the following lines
+  gitpod/workspace-full
+  file: .gitpod.Dockerfile
+tasks:
+  - name: kernel dev environment
+    init: |
+      echo "update the OS"
+      sudo apt update -y
+    command: |
+      echo "Nothing here."
+  - name: populate the code base
+    init: |
+      echo "Populate the code base"
+      git clone https://github.com/musk8teers/container-training.git
+      git clone https://github.com/musk8teers/spring-music.git
+      # kubectl completion bash > /workspace/kubectl_completion_for_bash.sh
+      # echo "source /workspace/kubectl_completion_for_bash.sh" >> ~/.bashrc
+    command: |
+      echo "TODO: start app"
+vscode:
+  extensions:
+    - yzhang.markdown-all-in-one
+    - Gruntfuggly.todo-tree
+workspaceLocation:
+  "."
