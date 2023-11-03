@@ -14,7 +14,7 @@ tasks:
   - name: populate the code base
     init: |
       echo "Populate the code base"
-      git clone https://github.com/musk8teers/container-training.git
+      git clone https://github.com/musk8teers/container.training.git
       git clone https://github.com/musk8teers/spring-music.git
       # kubectl completion bash > /workspace/kubectl_completion_for_bash.sh
       # echo "source /workspace/kubectl_completion_for_bash.sh" >> ~/.bashrc
