@@ -4,25 +4,29 @@ image:
   # You can dynamically build the image when you create a new GitPod workspace with the following lines
   # gitpod/workspace-full
   # file: .gitpod.Dockerfile
+additionalRepositories:
+    - url: https://github.com/musk8teers/container.training.git
+      # checkoutLocation is optional and relative to /workspaces.
+      # by default the location defaults to the repository name.
+      checkoutLocation: 'musk8teers/container.training'
+    - url: https://github.com/musk8teers/spring-music.git
+      # checkoutLocation is optional and relative to /workspaces.
+      # by default the location defaults to the repository name.
+      checkoutLocation: 'musk8teers/spring-music'
 tasks:
-  - name: filesystem reconfiguration
-    init: |
+  - name: workspace configuration
+    command: |
       mkdir -p /home/gitpod/.ssh
       cp -pr /workspace/gitpod-workspace/ssh-config /home/gitpod/.ssh/config
-    command: |
-      echo "Nothing here."
   - name: pre-requisite for container.training
-    init: |
+    command: |
       echo "pre-requisite for container.training"
-      echo "clone the git repositories"
-      git clone https://github.com/musk8teers/container.training.git
-      git clone https://github.com/musk8teers/spring-music.git
       echo "make /dev/stderr writable"
-      sudo chmod go+rw /dev/pts/1
+      sudo chmod go+rw /dev/pts/[0..9]
       echo "Activate SSH agent"
       eval $(ssh-agent) ; ssh-add && echo "SSH_AUTH_SOCK=${SSH_AUTH_SOCK}"
-    command: |
-      echo "TODO: start app"
+      echo "Configure Digital Ocean CLI"
+      doctl auth init --access-token $(tail -1 .secrets/gitpod-highfive-m6.token)
 vscode:
   extensions:
     - yzhang.markdown-all-in-one
