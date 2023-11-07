@@ -23,7 +23,6 @@ tasks:
       echo "pre-requisite for container.training"
       echo "make /dev/stderr writable"
       sudo chmod go+rw /dev/pts/?
-      ls -al /dev/pts/?
       echo "Activate SSH agent"
       eval $(ssh-agent) ; ssh-add && echo "SSH_AUTH_SOCK=${SSH_AUTH_SOCK}"
       echo "Configure Digital Ocean CLI"
