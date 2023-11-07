@@ -19,14 +19,14 @@ tasks:
       mkdir -p /home/gitpod/.ssh
       cp -pr /workspace/gitpod-workspace/ssh-config /home/gitpod/.ssh/config
   - name: pre-requisite for container.training
-    command: |
+    before: |
       echo "pre-requisite for container.training"
       echo "make /dev/stderr writable"
-      sudo chmod go+rw /dev/pts/[0..9]
+      sudo chmod go+rw /dev/pts/?
       echo "Activate SSH agent"
       eval $(ssh-agent) ; ssh-add && echo "SSH_AUTH_SOCK=${SSH_AUTH_SOCK}"
       echo "Configure Digital Ocean CLI"
-      doctl auth init --access-token $(tail -1 .secrets/gitpod-highfive-m6.token)
+      doctl auth init --access-token $(tail -1 /workspace/.secrets/gitpod-highfive-m6.token)
 vscode:
   extensions:
     - yzhang.markdown-all-in-one
