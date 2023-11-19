@@ -83,6 +83,32 @@ WORKDIR /home/gitpod
 # Copy of stand-alone files
 COPY ./ssh-config /home/gitpod/.ssh/config
 
+# Copy lot of tools from jpetazzo/shpod
+COPY --from=jpetazzo/shpod /usr/local/bin/crane /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/helm /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/httping /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/jid /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/k9s /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/kapp /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/kctx /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/kns /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/kube-linter /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/kubent /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/kubeseal /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/kustomize /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/ngrok /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/popeye /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/regctl /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/setup-tailhist.sh /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/ship /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/skaffold /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/stern /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/tilt /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/velero /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/local/bin/ytt /usr/local/bin
+COPY --from=jpetazzo/shpod /usr/bin/yq /usr/bin
+COPY --from=jpetazzo/shpod /usr/share/bash-completion/* /usr/share/bash-completion
+
 COPY --from=do /usr/bin/doctl /usr/bin/doctl
 
 COPY --from=tf /usr/bin/terraform /usr/bin/terraform
@@ -106,16 +132,17 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
     # sudo apt-get install -y kubectl && \
     sudo rm -Rf ./.sdkman
 
-# ----- Helm install
-# more details here: https://helm.sh/docs/intro/install/
+# lpiot 2023-11-19: now retrieved from jpetazzo/shpod
+# # ----- Helm install
+# # more details here: https://helm.sh/docs/intro/install/
 
-RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+# RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-# ----- Kustomize install
-# more detail here: https://kubectl.docs.kubernetes.io/installation/kustomize/
+# # ----- Kustomize install
+# # more detail here: https://kubectl.docs.kubernetes.io/installation/kustomize/
 
-RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash && \
-    sudo mv kustomize /usr/local/bin
+# RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash && \
+#     sudo mv kustomize /usr/local/bin
 
 # ----- Flux install
 # more detail here: https://fluxcd.io/docs/get-started/
@@ -131,7 +158,8 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
 # ----- common tools install
 RUN sudo apt-get update -y
 RUN sudo apt-get install -y jq tmux vim
-COPY --from=yq /usr/bin/yq /usr/bin/yq
+# lpiot 2023-11-19: now retrieved from jpetazzo/shpod
+# COPY --from=yq /usr/bin/yq /usr/bin/yq
 
 # ----- prerequisites for container.training labs
 RUN pip install git+https://github.com/lilydjwg/pssh
