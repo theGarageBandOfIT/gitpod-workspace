@@ -26,7 +26,7 @@ tasks:
       echo "Activate SSH agent"
       eval $(ssh-agent) ; ssh-add && echo "SSH_AUTH_SOCK=${SSH_AUTH_SOCK}"
       echo "Configure Digital Ocean CLI"
-      doctl auth init --access-token $(tail -1 /workspace/.secrets/gitpod-highfive-m6.token)
+      doctl auth init --access-token $(tail -1 /workspace/.secrets/gitpod-digitalocean_highfive-m6.token)
 vscode:
   extensions:
     - yzhang.markdown-all-in-one
