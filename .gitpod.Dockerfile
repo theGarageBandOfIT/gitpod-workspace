@@ -8,6 +8,17 @@ RUN apt-get update -y
 RUN apt-get install -y wget unzip
 
 # -----------------------------------------------------------------------------
+# Starship in RUST
+# source: https://starship.rs/
+# -----------------------------------------------------------------------------
+FROM rust:slim as starship
+LABEL maintainer="Ludovic Piot <ludovic.piot@thegaragebandofit.com>"
+
+RUN apt-get update -y
+RUN apt-get install -y cmake
+RUN cargo build starship --locked
+
+# -----------------------------------------------------------------------------
 # Digital Ocean
 # -----------------------------------------------------------------------------
 FROM base as do
@@ -82,6 +93,9 @@ WORKDIR /home/gitpod
 
 # Copy of stand-alone files
 COPY ./ssh-config /home/gitpod/.ssh/config
+
+# Copy of RUST awesome CLI tools
+COPY --from=starship /usr/local/cargo/bin/starship /usr/local/bin
 
 # Copy lot of tools from jpetazzo/shpod
 COPY --from=jpetazzo/shpod /usr/local/bin/crane /usr/local/bin
