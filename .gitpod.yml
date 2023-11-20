@@ -17,7 +17,9 @@ tasks:
   - name: workspace configuration
     command: |
       mkdir -p /home/gitpod/.ssh
-      cp -pr /workspace/gitpod-workspace/ssh-config /home/gitpod/.ssh/config
+      cp -pr /workspace/gitpod-workspace/config/ssh-config /home/gitpod/.ssh/config
+      cp -pr /workspace/gitpod-workspace/config/starship.toml /home/gitpod/.config/
+      echo 'eval "$(starship init bash)"' > /home/gitpod/.bashrc
   - name: pre-requisite for container.training
     before: |
       echo "pre-requisite for container.training"
@@ -32,5 +34,7 @@ vscode:
     - yzhang.markdown-all-in-one
     - Gruntfuggly.todo-tree
     - hashicorp.terraform
+    - tamasfe.even-better-toml
+
 workspaceLocation:
   "."
