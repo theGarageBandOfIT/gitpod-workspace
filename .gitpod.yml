@@ -31,5 +31,6 @@ vscode:
   extensions:
     - yzhang.markdown-all-in-one
     - Gruntfuggly.todo-tree
+    - hashicorp.terraform
 workspaceLocation:
   "."
