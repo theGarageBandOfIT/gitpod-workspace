@@ -76,11 +76,12 @@ RUN touch ~/.bashrc && \
 # yq CLI tool
 # more detail here: https://lindevs.com/install-yq-on-ubuntu/
 # -----------------------------------------------------------------------------
-FROM base as yq
-LABEL maintainer="Ludovic Piot <ludovic.piot@thegaragebandofit.com>"
+# lpiot 2023-11-19: now retrieved from jpetazzo/shpod
+# FROM base as yq
+# LABEL maintainer="Ludovic Piot <ludovic.piot@thegaragebandofit.com>"
 
-RUN wget -qO /usr/bin/yq  https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 && \
-    chmod a+x /usr/bin/yq
+# RUN wget -qO /usr/bin/yq  https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 && \
+#     chmod a+x /usr/bin/yq
 
 # -----------------------------------------------------------------------------
 # Final Image
@@ -97,6 +98,7 @@ COPY ./ssh-config /home/gitpod/.ssh/config
 # Copy of RUST awesome CLI tools
 COPY --from=starship /usr/local/cargo/bin/starship /usr/local/bin
 
+# lpiot 2023-11-19: now retrieved from jpetazzo/shpod
 # Copy lot of tools from jpetazzo/shpod
 COPY --from=jpetazzo/shpod /usr/local/bin/crane /usr/local/bin
 COPY --from=jpetazzo/shpod /usr/local/bin/helm /usr/local/bin
