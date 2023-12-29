@@ -92,9 +92,6 @@ LABEL maintainer="Ludovic Piot <ludovic.piot@thegaragebandofit.com>"
 
 WORKDIR /home/gitpod
 
-# Copy of stand-alone files
-COPY ./ssh-config /home/gitpod/.ssh/config
-
 # Copy of RUST awesome CLI tools
 COPY --from=starship /usr/local/cargo/bin/starship /usr/local/bin
 
