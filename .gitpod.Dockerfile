@@ -16,7 +16,7 @@ LABEL maintainer="Ludovic Piot <ludovic.piot@thegaragebandofit.com>"
 
 RUN apt-get update -y
 RUN apt-get install -y cmake
-RUN cargo build starship --locked
+RUN cargo install starship --locked
 
 # -----------------------------------------------------------------------------
 # Digital Ocean
